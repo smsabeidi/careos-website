@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { cn } from "@/lib/utils";
+import { createDemoRequestHref } from "@/lib/demo";
 
 type LeadFormProps = {
   className?: string;
@@ -19,7 +20,13 @@ export default function LeadForm({
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!email.trim()) return;
-    window.location.assign(`/book-a-demo?email=${encodeURIComponent(email.trim())}`);
+    window.location.assign(
+      createDemoRequestHref({
+        email,
+        source: window.location.pathname,
+        search: window.location.search,
+      }),
+    );
   }
 
   return (
