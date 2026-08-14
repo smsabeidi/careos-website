@@ -12,7 +12,7 @@ export default function BrandMark({
 }: BrandMarkProps) {
   return (
     <Image
-      src="/brand/selmou-logo-graphite.png"
+      src="/brand/selmou-mark-2026.png"
       alt={alt}
       width={96}
       height={96}

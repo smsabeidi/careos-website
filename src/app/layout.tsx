@@ -60,10 +60,20 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/seo/favicon.png", type: "image/png", sizes: "32x32" },
-      { url: "/seo/favicon-96.png", type: "image/png", sizes: "96x96" },
+      {
+        url: "/seo/selmou-favicon-2026.png",
+        type: "image/png",
+        sizes: "32x32",
+      },
+      {
+        url: "/seo/selmou-favicon-96-2026.png",
+        type: "image/png",
+        sizes: "96x96",
+      },
     ],
-    apple: [{ url: "/seo/apple-touch-icon.png", type: "image/png" }],
+    apple: [
+      { url: "/seo/selmou-apple-touch-icon-2026.png", type: "image/png" },
+    ],
   },
   ...(process.env.GOOGLE_SITE_VERIFICATION
     ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
