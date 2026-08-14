@@ -93,8 +93,8 @@ export const organizationJsonLd = {
   logo: {
     "@type": "ImageObject",
     url: absoluteUrl("/brand/selmou-logo-graphite.png"),
-    width: 737,
-    height: 737,
+    width: 1200,
+    height: 1200,
   },
   description: SITE_DESCRIPTION,
 };
