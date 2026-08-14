@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { createDemoRequestHref } from "@/lib/demo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,6 +12,19 @@ export default function Hero() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const tickerRef = useRef<HTMLDivElement>(null);
+
+  function handleDemoSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const email = new FormData(event.currentTarget).get("email");
+    if (typeof email !== "string" || !email.trim()) return;
+    window.location.assign(
+      createDemoRequestHref({
+        email,
+        source: "homepage hero",
+        search: window.location.search,
+      }),
+    );
+  }
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -377,6 +391,7 @@ export default function Hero() {
         <form
           action="/book-a-demo"
           method="get"
+          onSubmit={handleDemoSubmit}
           className="flex justify-between items-center px-[0.6rem] py-[0.6rem] bg-blur border-solid border-[1px] border-[rgba(255,255,255,0.1)] w-[27.5rem] transition-[width] duration-300 ease-out tablet:focus-within:w-[36rem]"
         >
           <label htmlFor="hero-email" className="sr-only">Work email</label>

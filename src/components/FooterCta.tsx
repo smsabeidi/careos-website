@@ -1,9 +1,24 @@
 "use client";
 
+import { type FormEvent } from "react";
 import Image from "next/image";
 import BrandMark from "@/components/BrandMark";
+import { createDemoRequestHref } from "@/lib/demo";
 
 export default function FooterCta() {
+  function handleDemoSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const email = new FormData(event.currentTarget).get("email");
+    if (typeof email !== "string" || !email.trim()) return;
+    window.location.assign(
+      createDemoRequestHref({
+        email,
+        source: "homepage footer",
+        search: window.location.search,
+      }),
+    );
+  }
+
   return (
     <section className="flex justify-center items-center w-screen pt-[1.6rem] pb-[1.6rem] px-[1.6rem] tablet:py-[2.4rem] tablet:px-[2.4rem] desktop:py-[3.2em] desktop:px-[3.2rem]">
       <div className="relative overflow-hidden rounded-[1.6rem] w-full max-w-[2056px] h-full tablet:h-auto desktop:aspect-[1664/876] max-h-[465px] aspect-[362/463] tablet:aspect-auto tablet:max-h-[700px] desktop:max-h-[876px]">
@@ -28,6 +43,7 @@ export default function FooterCta() {
             className="flex justify-between items-center px-[0.6rem] py-[0.6rem] backdrop-blur-[10px] bg-white/10 rounded-[1.6rem] border-solid border-[1px] border-[rgba(255,255,255,0.1)] w-[27.5rem] transition-[width] duration-300 ease-out tablet:focus-within:w-[36rem] mt-[1.6rem]"
             action="/book-a-demo"
             method="get"
+            onSubmit={handleDemoSubmit}
           >
             <label htmlFor="footer-email" className="sr-only">Work email</label>
             <input
